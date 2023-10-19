@@ -25,7 +25,8 @@
 		"vscode": {
 			"extensions": [
 				"ms-python.python",
-				"dracula-theme.theme-dracula"				
+				"dracula-theme.theme-dracula",
+				"ms-python.pylint"				
 			]
 		}
 	 }
