@@ -35,12 +35,12 @@ In the code snippet provided, the minimax function is used to implement the mini
 By utilizing this AI algorithm, Player 2 is able to play a winning or draw-only game of Tic-Tac-Toe.
 
 # Running the Code
-1. Open a new terminal window and navigate to the directory where the code is located. ![](/tic-tac-toe/media/2.png)
+1. Open a new terminal window and navigate to the directory where the code is located. ![](/media/2.png)
 2. Run `python3 tic_tac_toe.py` in your terminal. 
-![](/tic-tac-toe/media/3.png)
-3. Once the python files runs, it will either start with Player 1 (you) or Player 2 (AI). ![](/tic-tac-toe/media/4.png)
-4. To play: The play area is 3 x 3. To input your move enter the row then column with a space in between then hit enter. ![](/tic-tac-toe/media/5.png)
-5. Once the game is over, the program will tell you if you lost, won, or if the game ended in a tie. ![](/tic-tac-toe/media/6.png)
+![](/media/3.png)
+3. Once the python files runs, it will either start with Player 1 (you) or Player 2 (AI). ![](/media/4.png)
+4. To play: The play area is 3 x 3. To input your move enter the row then column with a space in between then hit enter. ![](/media/5.png)
+5. Once the game is over, the program will tell you if you lost, won, or if the game ended in a tie. ![](/media/6.png)
 
 ## Conclusion
 While working on this project, I noticed a few things. When utilizing the minimax algorithm, the AI played as it should but mushc slower than if you were playing a "computer" in an online game. This meant that the algorithm had to be optimized. 
