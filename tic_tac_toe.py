@@ -58,16 +58,69 @@ class Player_2:
     def __init__(self, judge):
         self.judge = judge
         self.board = judge.board
+        self.cache = {}
     
     def my_play(self):
-        # implment your code here
-        # minimax algorithm implementation
-        def minimax(self, board, depth, mazimizer):
-            if self.judge.is_winner('0'):
-                return scores['0']
-            
+        # Minimax for AI with alpha-beta pruning
+        best_score = float('-inf')
+        best_move = None
+        
+        for i in range(len(self.board)):
+            for j in range(len(self.board[i])):
+                if self.board[i][j] == '-':
+                    self.board[i][j] = 'O'
+                    score = self.minimax(self.board, 0, False, float('-inf'), float('inf'))
+                    self.board[i][j] = '-'
+                    if score > best_score:
+                        best_score = score
+                        best_move = (i, j)
+        
+        self.board[best_move[0]][best_move[1]] = 'O'
+    
+    def minimax(self, board, depth, maximizing, alpha, beta):
+        scores = {'X': -1, 'O': 1, 'tie': 0}
+        
+        if self.judge.is_winner('O'):
+            return scores['O']
+        if self.judge.is_winner('X'):
+            return scores['X']
+        if self.judge.is_board_full():
+            return scores['tie']
+        
+        # Convert board to a tuple so it can be hashed
+        board_tuple = tuple(map(tuple,board))
 
-
+        if board_tuple in self.cache:
+            return self.cache[board_tuple]
+        
+        if maximizing:
+            best_score = float('-inf')
+            for i in range(len(board)):
+                for j in range(len(board[i])):
+                    if board[i][j] == '-':
+                        board[i][j] = 'O'
+                        score = self.minimax(board, depth + 1, False, alpha, beta)
+                        board[i][j] = '-'
+                        best_score = max(score, best_score)
+                        alpha = max(alpha, best_score)
+                        if beta <= alpha:
+                            break
+            self.cache[board_tuple] = best_score
+            return best_score
+        else:
+            best_score = float('inf')
+            for i in range(len(board)):
+                for j in range(len(board[i])):
+                    if board[i][j] == '-':
+                        board[i][j] = 'X'
+                        score = self.minimax(board, depth + 1, True, alpha, beta)
+                        board[i][j] = '-'
+                        best_score = min(score, best_score)
+                        beta = min(beta, best_score)
+                        if beta <= alpha:
+                            break
+            self.cache[board_tuple] = best_score
+            return best_score
 # Main Game Loop
 def game_loop():
     n = 3  # Board size
@@ -124,4 +177,4 @@ def game_loop():
                 print("It's a tie!")
                 break
 
-# game_loop() # Uncomment this line to play the game, but it must be commented again when you are submitting the code
+game_loop()
